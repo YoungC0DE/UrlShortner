@@ -1,6 +1,6 @@
 # 🔗 URL shortener (uLnk)
 
-<img width="720" height="684" alt="Screenshot" src="https://github.com/user-attachments/assets/9b289422-cfd1-4c37-9945-6af5b69181a3" />
+<img width="782" height="691" alt="image" src="https://github.com/user-attachments/assets/e1b0bd65-5ec8-4924-8002-37855d495075" />
 
 A small **Node API** (Fastify + MongoDB) plus a **static page** to shorten links.
 
