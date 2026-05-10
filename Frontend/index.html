@@ -1,30 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="api-base" content="https://urlshortner-mpv0.onrender.com" />
-    <title>UrlShortner</title>
+    <meta name="api-base" content="https://ulnk.com.br" />
+    <title>uLnk — Encurtador de URL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/styles.css" />
-    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <main class="wrap">
-      <h1 class="title">UrlShortner</h1>
+      <h1 class="title">uLnk</h1>
+      <p class="tagline">Encurte links em um clique.</p>
 
       <form id="form" class="form" novalidate>
-        <label class="label" for="url">Original URL</label>
+        <label class="label" for="url">URL original</label>
         <input
           id="url"
           name="url"
           type="url"
           class="input"
-          placeholder="https://example.com/page"
+          placeholder="https://exemplo.com/pagina"
           autocomplete="url"
           required
         />
         <button type="submit" class="btn btn-primary" id="submit">
-          Shorten
+          Encurtar
         </button>
       </form>
 

@@ -1,35 +1,49 @@
-# URL Shortener
+# 🔗 Encurtador de URL (uLnk)
 
-URL shortener with a Node API (Fastify + MongoDB) and a simple static web page.
+Projeto simples: uma **API em Node** (Fastify + MongoDB) e uma **página estática** para encurtar links.
 
-## Requirements
+---
 
-- [Node.js](https://nodejs.org/) (a version compatible with the project)
-- [MongoDB](https://www.mongodb.com/) running locally or via a remote URI
+## ✨ O que você ganha
 
-## Backend
+- 🚀 **API em produção:** [https://ulnk.com.br](https://ulnk.com.br)
+- 📱 **Frontend leve:** HTML, CSS e JS — sem bundler
+- 🔒 URLs válidas só com **http** ou **https** (parâmetros de query, tipo UTM, são mantidos)
 
-Location: `Backend` folder.
+---
 
-### Setup
+## 📋 Pré-requisitos
 
-1. Copy `Backend/.env-example` to `Backend/.env` (PowerShell: `Copy-Item Backend\.env-example Backend\.env`).
+| Item | Para quê |
+|------|-----------|
+| [Node.js](https://nodejs.org/) | Rodar o backend |
+| [MongoDB](https://www.mongodb.com/) | Armazenar os links (local ou Atlas) |
 
-2. Adjust `Backend/.env` as needed (port, MongoDB, limits).
+---
 
-### Main environment variables
+## 🖥️ Backend
 
-| Variable | Description |
-|----------|-------------|
-| `PORT` | HTTP server port (default: `3000`) |
-| `MONGO_URL` | MongoDB connection URI |
-| `MONGO_DATABASE` | Database name |
-| `TRUST_PROXY` | `true` behind a reverse proxy (correct IP for rate limiting) |
-| `RATE_LIMIT_MAX` | Max `POST /shorten` requests per IP per window |
-| `RATE_LIMIT_TIME_WINDOW_MS` | Window length in milliseconds |
-| `CORS_ENABLED` | `false` disables CORS (keep `true` if the frontend runs on another origin) |
+📂 Pasta: **`Backend`**
 
-### Run
+### ⚙️ Configuração rápida
+
+1. Copie o exemplo de ambiente:
+   - PowerShell: `Copy-Item Backend\.env-example Backend\.env`
+2. Ajuste **`Backend/.env`** (porta, MongoDB, limites).
+
+### 🔑 Variáveis principais
+
+| Variável | O que faz |
+|----------|-----------|
+| `PORT` | Porta HTTP (padrão: `3000`) |
+| `MONGO_URL` | URI de conexão do MongoDB |
+| `MONGO_DATABASE` | Nome do banco |
+| `TRUST_PROXY` | `true` atrás de proxy reverso (IP correto no rate limit) |
+| `RATE_LIMIT_MAX` | Máx. de `POST /shorten` por IP na janela |
+| `RATE_LIMIT_TIME_WINDOW_MS` | Tamanho da janela em ms |
+| `CORS_ENABLED` | `false` desliga CORS (`true` se o front for de outra origem) |
+
+### ▶️ Rodar em desenvolvimento
 
 ```bash
 cd Backend
@@ -37,32 +51,50 @@ npm install
 npm run dev
 ```
 
-For production: `npm run build` and `npm start`.
+### 🚢 Produção
 
-### Endpoints
+```bash
+npm run build
+npm start
+```
 
-| Method | Path | Description |
-|--------|------|-------------|
-| `POST` | `/shorten` | JSON body: `{ "url": "<https://...>" }`. Success: `{ "code", "short_url" }`. |
-| `GET` | `/:code` | Redirects to the original URL for that code. |
+### 📡 Endpoints
 
-The API only accepts absolute URLs with **http** or **https**. Query parameters (e.g. UTM tags) are preserved.
+| Método | Caminho | Descrição |
+|--------|---------|-----------|
+| `POST` | `/shorten` | Body JSON: `{ "url": "https://..." }` → resposta: `{ "code", "short_url" }` |
+| `GET` | `/:code` | Redireciona para a URL original |
 
-Common errors: invalid body or URL (`400`), unknown code (`404`), rate limit exceeded (`429`).
+**Erros comuns:** corpo ou URL inválidos (`400`), código desconhecido (`404`), rate limit (`429`).
 
-## Frontend
+---
 
-Location: `Frontend` folder. Static HTML, CSS, and JavaScript (no bundler).
+## 🌐 Frontend
 
-1. Start the backend (for example at `http://localhost:3000`).
-2. Serve the `Frontend` folder with any static HTTP server, for example:
+📂 Pasta: **`Frontend`**
 
-   ```bash
-   npx --yes serve Frontend -l 5173
-   ```
+O app já usa a API oficial **`https://ulnk.com.br`** (meta `api-base` em `Frontend/index.html`).
 
-3. Open the URL printed by the command in your browser (for example `http://localhost:5173`).
+Para testar **só o front** contra produção, basta abrir a pasta com um servidor estático:
 
-Change the API base URL in `<meta name="api-base" content="...">` inside `Frontend/index.html` if the backend is not at `http://localhost:3000`.
+```bash
+npx --yes serve Frontend -l 5173
+```
 
-The browser needs CORS enabled on the backend (`CORS_ENABLED=true`, the default) because the page and API run on different ports.
+Abra no navegador a URL que o comando mostrar (ex.: `http://localhost:5173`).
+
+### 🔧 API local durante o desenvolvimento
+
+Se o backend estiver em outra URL (ex.: `http://localhost:3000`), altere o atributo em `Frontend/index.html`:
+
+```html
+<meta name="api-base" content="http://localhost:3000" />
+```
+
+Com origens diferentes (front na porta 5173, API na 3000), mantenha **`CORS_ENABLED=true`** no backend.
+
+---
+
+## 📄 Licença / uso
+
+Use e adapte como preferir no seu projeto pessoal.

@@ -1,6 +1,7 @@
 (function () {
   var meta = document.querySelector('meta[name="api-base"]');
-  var API_BASE = (meta && meta.getAttribute("content")) || "http://localhost:3000";
+  var API_BASE =
+    (meta && meta.getAttribute("content")) || "https://ulnk.com.br";
 
   var form = document.getElementById("form");
   var urlInput = document.getElementById("url");
@@ -25,7 +26,7 @@
       if (data.message && typeof data.message === "string") return data.message;
       if (data.error && typeof data.error === "string") return data.error;
     } catch (_) {}
-    return "Request failed (" + res.status + ").";
+    return "Falha na requisição (" + res.status + ").";
   }
 
   form.addEventListener("submit", async function (e) {
@@ -36,7 +37,7 @@
     if (!raw) {
       showResult(
         "error",
-        '<p class="result-msg">Enter a URL.</p>'
+        '<p class="result-msg">Informe uma URL.</p>'
       );
       return;
     }
@@ -61,8 +62,8 @@
 
       var successHtml =
         '<p class="result-short">' + escapeHtml(shortUrl) + "</p>" +
-        '<p class="result-hint">Short link ready — copy it below.</p>' +
-        '<button type="button" class="btn btn-copy" id="copyBtn">Copy</button>';
+        '<p class="result-hint">Link pronto — copie abaixo.</p>' +
+        '<button type="button" class="btn btn-copy" id="copyBtn">Copiar</button>';
 
       showResult("success", successHtml);
 
@@ -72,9 +73,9 @@
     } catch (_) {
       showResult(
         "error",
-        '<p class="result-msg">Could not reach the server. Make sure the API is running at <code>' +
+        '<p class="result-msg">Não foi possível conectar à API em <code>' +
           escapeHtml(API_BASE) +
-          "</code>.</p>"
+          "</code>. Tente de novo em instantes.</p>"
       );
     } finally {
       submitBtn.disabled = false;
@@ -89,7 +90,7 @@
 
   function copyToClipboard(text, btn) {
     function markCopied() {
-      if (btn) btn.textContent = "Copied!";
+      if (btn) btn.textContent = "Copiado!";
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard
