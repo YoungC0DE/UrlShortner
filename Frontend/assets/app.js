@@ -26,7 +26,7 @@
       if (data.message && typeof data.message === "string") return data.message;
       if (data.error && typeof data.error === "string") return data.error;
     } catch (_) {}
-    return "Falha na requisição (" + res.status + ").";
+    return "Request failed (" + res.status + ").";
   }
 
   form.addEventListener("submit", async function (e) {
@@ -37,7 +37,7 @@
     if (!raw) {
       showResult(
         "error",
-        '<p class="result-msg">Informe uma URL.</p>'
+        '<p class="result-msg">Enter a URL.</p>'
       );
       return;
     }
@@ -62,8 +62,8 @@
 
       var successHtml =
         '<p class="result-short">' + escapeHtml(shortUrl) + "</p>" +
-        '<p class="result-hint">Link pronto — copie abaixo.</p>' +
-        '<button type="button" class="btn btn-copy" id="copyBtn">Copiar</button>';
+        '<p class="result-hint">Short link ready — copy it below.</p>' +
+        '<button type="button" class="btn btn-copy" id="copyBtn">Copy</button>';
 
       showResult("success", successHtml);
 
@@ -73,9 +73,9 @@
     } catch (_) {
       showResult(
         "error",
-        '<p class="result-msg">Não foi possível conectar à API em <code>' +
+        '<p class="result-msg">Could not reach the API at <code>' +
           escapeHtml(API_BASE) +
-          "</code>. Tente de novo em instantes.</p>"
+          "</code>. Try again in a moment.</p>"
       );
     } finally {
       submitBtn.disabled = false;
@@ -90,7 +90,7 @@
 
   function copyToClipboard(text, btn) {
     function markCopied() {
-      if (btn) btn.textContent = "Copiado!";
+      if (btn) btn.textContent = "Copied!";
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard

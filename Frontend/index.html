@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="api-base" content="https://ulnk.com.br" />
-    <title>uLnk — Encurtador de URL</title>
+    <title>uLnk — URL shortener</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,21 +17,21 @@
   <body>
     <main class="wrap">
       <h1 class="title">uLnk</h1>
-      <p class="tagline">Encurte links em um clique.</p>
+      <p class="tagline">Shorten links in one click.</p>
 
       <form id="form" class="form" novalidate>
-        <label class="label" for="url">URL original</label>
+        <label class="label" for="url">Original URL</label>
         <input
           id="url"
           name="url"
           type="url"
           class="input"
-          placeholder="https://exemplo.com/pagina"
+          placeholder="https://example.com/page"
           autocomplete="url"
           required
         />
         <button type="submit" class="btn btn-primary" id="submit">
-          Encurtar
+          Shorten
         </button>
       </form>
 

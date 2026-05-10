@@ -11,6 +11,7 @@ import {
   UrlValidationError,
   parseValidHttpUrl,
 } from "../../utils/validate-http-url";
+import { addMonths } from "../../utils/add-months";
 
 function validationMessage(code: UrlValidationError["code"]): string {
   switch (code) {
@@ -45,10 +46,13 @@ export async function createShortUrlController(
     const code = nanoid(6);
     const db = getDb();
 
+    const created_at = new Date();
+
     const document: UrlDocument = {
       code,
       original_url: normalizedUrl,
-      created_at: new Date(),
+      created_at,
+      expires_at: addMonths(created_at, 6),
     };
 
     await db.collection("urls").insertOne(document);
@@ -84,11 +88,21 @@ export async function redirectController(
 
   const db = getDb();
 
-  const url = await db
-    .collection<UrlDocument>("urls")
-    .findOne({
+  const now = new Date();
+
+  const url = await db.collection<UrlDocument>("urls").findOneAndUpdate(
+    {
       code,
-    });
+      expires_at: { $gt: now },
+    },
+    {
+      $set: {
+        last_access_at: now,
+        expires_at: addMonths(now, 6),
+      },
+    },
+    { returnDocument: "after" }
+  );
 
   if (!url) {
     return reply.status(HttpCode.NOT_FOUND).send({
