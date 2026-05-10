@@ -1,5 +1,7 @@
 # 🔗 Encurtador de URL (uLnk)
 
+<img width="720" height="684" alt="image" src="https://github.com/user-attachments/assets/9b289422-cfd1-4c37-9945-6af5b69181a3" />
+
 Projeto simples: uma **API em Node** (Fastify + MongoDB) e uma **página estática** para encurtar links.
 
 ---
