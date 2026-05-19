@@ -6,15 +6,15 @@ A small **Node API** (Fastify + MongoDB) plus a **static page** to shorten links
 
 ---
 
-## ✨ What you get
+## What you get
 
-- 🚀 **Production API:** [https://ulnk.com.br](https://ulnk.com.br)
-- 📱 **Light frontend:** HTML, CSS, and JS — no bundler
-- 🔒 Only **http** or **https** URLs (query params, e.g. UTMs, are preserved)
+- **Production API:** [https://ulnk.com.br](https://ulnk.com.br)
+- **Light frontend:** HTML, CSS, and JS — no bundler
+- Only **http** or **https** URLs (query params, e.g. UTMs, are preserved)
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 | Item | Why |
 |------|-----|
@@ -23,17 +23,17 @@ A small **Node API** (Fastify + MongoDB) plus a **static page** to shorten links
 
 ---
 
-## 🖥️ Backend
+## Backend
 
-📂 Folder: **`Backend`**
+Folder: **`Backend`**
 
-### ⚙️ Quick setup
+### Quick setup
 
 1. Copy the environment example:
    - PowerShell: `Copy-Item Backend\.env-example Backend\.env`
 2. Edit **`Backend/.env`** (port, MongoDB, limits).
 
-### 🔑 Main environment variables
+### Main environment variables
 
 | Variable | Purpose |
 |----------|---------|
@@ -45,7 +45,7 @@ A small **Node API** (Fastify + MongoDB) plus a **static page** to shorten links
 | `RATE_LIMIT_TIME_WINDOW_MS` | Window length in milliseconds |
 | `CORS_ENABLED` | `false` disables CORS (`true` if the frontend is on another origin) |
 
-### ▶️ Development
+### Development
 
 ```bash
 cd Backend
@@ -53,14 +53,14 @@ npm install
 npm run dev
 ```
 
-### 🚢 Production
+### Production
 
 ```bash
 npm run build
 npm start
 ```
 
-### 📡 Endpoints
+### Endpoints
 
 | Method | Path | Description |
 |--------|------|---------------|
@@ -71,9 +71,9 @@ npm start
 
 ---
 
-## 🌐 Frontend
+## Frontend
 
-📂 Folder: **`Frontend`**
+Folder: **`Frontend`**
 
 The app uses the production API **`https://ulnk.com.br`** (`api-base` meta in `Frontend/index.html`).
 
@@ -85,7 +85,7 @@ npx --yes serve Frontend -l 5173
 
 Open the URL printed in the terminal (e.g. `http://localhost:5173`).
 
-### 🔧 Local API during development
+### Local API during development
 
 If the backend runs elsewhere (e.g. `http://localhost:3000`), change the attribute in `Frontend/index.html`:
 
@@ -97,6 +97,6 @@ With different origins (frontend on 5173, API on 3000), keep **`CORS_ENABLED=tru
 
 ---
 
-## 📄 License / usage
+## License / usage
 
 Use and adapt freely for personal projects.
